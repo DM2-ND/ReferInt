@@ -154,9 +154,7 @@ total_start_time = time.time()
 try:
 
     evaluations = []
-    train_loss, valid_loss, accuracy = [], [], []
-
-    print('-' * 90)
+    train_loss = []
 
     for epoch in range(1, epochs+1):
 
@@ -170,19 +168,6 @@ try:
         loss, evaluation = evaluate()
         print('dev evaluation {}'.format(evaluation))
         evaluations.append(evaluation)
-
-        if epoch > 3:
-
-            best_f1 = sorted(evaluations, key=lambda x: x[3], reverse=True)[0:3]
-
-            print('end of epoch {:3d}'.format(epoch))
-            print('loss on test {:5.6f}'.format(loss))
-            print('##current 1st result {}'.format(best_f1[0]))
-            print('##current 2nd result {}'.format(best_f1[1]))
-            print('##current 3rd result {}'.format(best_f1[2]))
-
-            print('-' * 30)
-
 
 except KeyboardInterrupt:
     print("-"*90)
